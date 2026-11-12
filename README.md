@@ -6,7 +6,7 @@ Chat mit Verlauf, Uploads und kontrolliertem Zugriff auf deine Projektordner: De
 
 ![Agent Chat](docs/screenshot.png)
 
-[![CI](https://github.com/dsactivi-2/API_AGENT_APP/actions/workflows/ci.yml/badge.svg)](https://github.com/dsactivi-2/API_AGENT_APP/actions/workflows/ci.yml)
+[![CI](https://github.com/dsactivi-2/API_AGENT_APP/actions/workflows/ci.yml/badge.svg)](https://github.com/dsactivi-2/API_AGENT_APP/actions/workflows/ci.yml) [![Lizenz: MIT](https://img.shields.io/badge/Lizenz-MIT-blue.svg)](LICENSE)
 
 ---
 
@@ -26,6 +26,7 @@ Chat mit Verlauf, Uploads und kontrolliertem Zugriff auf deine Projektordner: De
 - [Fehlerbehebung](#fehlerbehebung)
 - [Bekannte Grenzen](#bekannte-grenzen)
 - [Sicherheit](#sicherheit)
+- [Lizenz](#lizenz)
 
 ---
 
@@ -294,3 +295,9 @@ Kurzfassung: Zugriff nur auf freigegebene Ordner, Schreiben nur nach Freigabe, k
 ## Changelog
 
 Siehe [CHANGELOG.md](CHANGELOG.md).
+
+---
+
+## Lizenz
+
+[MIT](LICENSE) © 2026 activi
