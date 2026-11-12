@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent Chat</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="icon" href="/static/icon.png">
+</head>
+<body>
+  <div id="app">
+    <aside id="sidebar">
+      <div class="side-head">
+        <button id="newChat" class="primary wide">＋ Neuer Chat</button>
+        <input id="search" type="search" placeholder="Chats durchsuchen …" autocomplete="off">
+      </div>
+      <nav id="chatList"></nav>
+      <div class="side-foot">
+        <button id="openSettings" class="ghost wide">⚙︎ Einstellungen</button>
+        <div id="keyState" class="muted small"></div>
+      </div>
+    </aside>
+
+    <main id="main">
+      <header id="chatHeader">
+        <h1 id="chatTitle">Agent Chat</h1>
+        <div class="header-actions">
+          <button id="renameChat" class="ghost small" hidden>Umbenennen</button>
+          <button id="deleteChat" class="ghost small danger" hidden>Löschen</button>
+        </div>
+      </header>
+
+      <section id="messages">
+        <div id="empty" class="empty">
+          <h2>Voice-Agent-Designer</h2>
+          <p>Stelle eine Frage, lade Prompts oder Transkripte hoch oder lass den Agenten in freigegebenen Ordnern arbeiten.</p>
+          <p class="muted small">API-Key, Agent und Ordner legst du in den Einstellungen fest.</p>
+        </div>
+      </section>
+
+      <footer id="composer">
+        <div id="dropHint" hidden>Dateien hier ablegen</div>
+        <div id="attachments"></div>
+        <div class="composer-row">
+          <label class="icon-btn" title="Datei anhängen">
+            📎<input id="fileInput" type="file" multiple hidden>
+          </label>
+          <textarea id="input" rows="1" placeholder="Nachricht … (Enter senden, Shift+Enter neue Zeile)"></textarea>
+          <button id="send" class="primary">Senden</button>
+          <button id="stop" class="danger" hidden>Stopp</button>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <dialog id="settings">
+    <form method="dialog" id="settingsForm">
+      <header class="dlg-head">
+        <h2>Einstellungen</h2>
+        <button value="cancel" class="ghost" aria-label="Schließen">✕</button>
+      </header>
+
+      <fieldset>
+        <legend>OpenAI-API-Key</legend>
+        <p class="muted small">Wird im macOS-Schlüsselbund gespeichert, nicht in einer Datei.</p>
+        <div class="row">
+          <input id="apiKey" type="password" placeholder="sk-…" autocomplete="off">
+          <button type="button" id="saveKey" class="primary">Speichern</button>
+          <button type="button" id="deleteKey" class="ghost danger">Entfernen</button>
+        </div>
+        <div id="apiKeyStatus" class="small"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Agent</legend>
+        <label>Agent-ID <input id="agentId" type="text" spellcheck="false" placeholder="agent_… – oder unten laden bzw. anlegen"></label>
+        <div class="row">
+          <button type="button" id="loadAgents" class="ghost">Agents dieses API-Keys laden</button>
+          <select id="agentSelect" hidden></select>
+        </div>
+        <div class="row">
+          <button type="button" id="createDesigner" class="ghost">Voice-Agent-Designer in diesem Projekt anlegen</button>
+        </div>
+        <label>API-Adresse <input id="baseUrl" type="text" spellcheck="false"></label>
+        <label>Modell überschreiben (optional) <input id="modelOverride" type="text" placeholder="leer = Modell des Agenten" spellcheck="false"></label>
+        <label>Reasoning-Aufwand
+          <select id="reasoningEffort">
+            <option value="">Wie im Agent gespeichert</option>
+            <option value="low">low – schnell, günstig</option>
+            <option value="medium">medium – ausgewogen</option>
+            <option value="high">high – gründlich (empfohlen für Prompt-Design)</option>
+            <option value="xhigh">xhigh – sehr gründlich, langsam, teuer</option>
+          </select>
+        </label>
+        <label>Ausgabenlimit pro Chat-Session in US-Cent (optional) <input id="spendLimit" type="number" min="1" placeholder="unbegrenzt"></label>
+        <label class="check"><input id="showReasoning" type="checkbox"> Reasoning-Zusammenfassungen anzeigen</label>
+        <label class="check"><input id="localTools" type="checkbox"> Lokale Datei-Tools aktivieren</label>
+        <div class="row">
+          <button type="button" id="testConn" class="ghost">Verbindung testen</button>
+          <span id="testResult" class="small"></span>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Freigegebene Ordner</legend>
+        <p class="muted small">Nur hier darf der Agent lesen. „Lesen + Schreiben“ erlaubt Schreibvorschläge, die du jedes Mal bestätigst. Löschen ist nie möglich.</p>
+        <div id="folders"></div>
+        <button type="button" id="addFolder" class="ghost">＋ Ordner hinzufügen</button>
+      </fieldset>
+
+      <footer class="dlg-foot">
+        <span id="settingsError" class="error small"></span>
+        <button value="cancel" class="ghost">Abbrechen</button>
+        <button type="button" id="saveSettings" class="primary">Speichern</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <script src="/static/markdown.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>

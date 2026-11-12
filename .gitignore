@@ -1,0 +1,22 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Lokale Daten & Backups (enthalten Agent-Konfigurationen, keine Repo-Inhalte)
+tools/backups/
+*.log
+
+# Secrets – gehören nie ins Repo (Key liegt im macOS-Schlüsselbund)
+.env
+.env.*
+*.pem
+*.key
+
+# macOS / Editor
+.DS_Store
+.idea/
+.vscode/

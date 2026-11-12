@@ -1,0 +1,7 @@
+openai>=3.49.0
+fastapi>=0.115
+uvicorn>=0.30
+python-multipart>=0.0.9
+pypdf>=5.0
+keyring>=25.0
+pywebview>=5.0; sys_platform == "darwin"
